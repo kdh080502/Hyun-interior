@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HYUN 인테리어 관리자</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js"></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <main class="wrap">
+    <header><a href="../index.html">HYUN INTERIOR</a><span>ADMIN</span></header>
+    <section id="loginPanel" class="panel">
+      <h1>관리자 로그인</h1><p>등록된 관리자 계정으로 로그인해 주세요.</p>
+      <form id="loginForm"><label>이메일<input id="email" type="email" required autocomplete="username"></label><label>비밀번호<input id="password" type="password" required autocomplete="current-password"></label><button>로그인</button></form>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="topline"><div><h1>홈페이지 관리</h1><p id="who"></p></div><button id="logout" class="secondary">로그아웃</button></div>
+      <section class="panel"><h2>연락처 및 메인 이미지</h2><form id="settingsForm" class="grid">
+        <label>전화번호<input name="phone"></label><label>이메일<input name="email"></label><label>사무실 주소<input name="address"></label><label>팩스<input name="fax"></label><label class="wide">메인 이미지 업로드<input name="main_image" type="file" accept="image/*"><small id="mainImageStatus">메인 이미지 상태를 확인 중입니다.</small></label><div class="wide actions"><button type="button" id="removeMainImage" class="secondary">메인 이미지 제거</button><button>설정 저장</button></div>
+      </form></section>
+      <section class="panel"><h2 id="projectFormTitle">프로젝트 등록</h2><form id="projectForm" class="grid">
+        <input type="hidden" name="id"><label>프로젝트명<input name="title" required></label><label>분류<select name="category"><option>건축</option><option>인테리어</option><option>리모델링</option></select></label><label>연도<input name="project_year" type="number" min="1900" max="2100"></label><label>정렬 순서<input name="sort_order" type="number" value="0"></label><label class="wide">설명<textarea name="description" rows="3"></textarea></label><label>BEFORE 사진<input name="before_file" type="file" accept="image/*"></label><label>AFTER 사진<input name="after_file" type="file" accept="image/*"></label><label class="check"><input name="is_published" type="checkbox" checked> 홈페이지에 공개</label><div class="actions wide"><button>저장</button><button type="button" id="cancelEdit" class="secondary" hidden>수정 취소</button></div>
+      </form></section>
+      <section class="panel"><h2>등록된 프로젝트</h2><div id="projectList"></div></section>
+    </section>
+    <p id="notice" role="status"></p>
+  </main>
+</body></html>
